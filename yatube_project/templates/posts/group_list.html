@@ -1,6 +1,8 @@
+{% extends 'base.html' %}
 <!DOCTYPE html> <!-- Используется html 5 версии -->
 <html lang="ru"> <!-- Язык сайта - русский -->
-  <head>    
+  <head>
+    {%block title%}    
     <meta charset="utf-8"> <!-- Кодировка сайта -->
     <!-- Сайт готов работать с мобильными устройствами -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,22 +16,14 @@
     <!-- Подключен файл со стандартными стилями бустрап -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Лев Толстой – зеркало русской революции.</title>
+    {%endblock%}
   </head>
   <body>
     <header>
-      <!-- Использованы классы бустрапа для создания типовой навигации с логотипом -->
-      <!-- В дальнейшем тут будет создано полноценное меню -->    
-      <nav class="navbar navbar-light" style="background-color: lightskyblue">
-        <div class="container">
-          <a class="navbar-brand" href="index.html">
-            <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            <!-- тег span используется для добавления нужных стилей отдельным участкам текста -->
-            <span style="color:red">Ya</span>tube</a>
-          </a>
-        </div>
-      </nav>      
+      {%include 'includes/header.html'%}      
     </header>
     <main>
+      {%block content%}
       <!-- класс py-5 создает отступы сверху и снизу блока -->
       <div class="container py-5">
         <h1>Лев Толстой – зеркало русской революции.</h1>
@@ -97,14 +91,15 @@
           </p>
         </article>
         <!-- под последним постом нет линии -->
-      </div>  
+      </div>
+      {%endblock%}  
     </main>
     <!-- Использованы классы бустрапа: -->
     <!-- border-top: создаёт тонкую линию сверху блока -->
     <!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
     <!-- py-3: контент внутри размещается с отступом сверху и снизу -->         
     <footer class="border-top text-center py-3">
-      <!-- тег span используется для добавления нужных стилей отдельным участкам текста --> 
+      {% include 'includes/footer.html' %} 
       <p>© 2021 Copyright <span style="color:red">Ya</span>tube</p>    
     </footer>
   </body>
