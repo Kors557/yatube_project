@@ -5,8 +5,8 @@ User = get_user_model()
 
 
 class Group(models.Model):
-    title = models.CharField(max_length=20)
-    slug = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, verbose_name='URL')
     description = models.TextField()
 
     def __str__(self) -> str:
@@ -21,7 +21,6 @@ class Post(models.Model):
         on_delete=models.CASCADE,
         related_name='posts'
     )
-
     group = models.ForeignKey(
         Group,
         blank=True,

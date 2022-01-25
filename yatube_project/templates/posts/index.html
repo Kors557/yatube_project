@@ -1,32 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 {%include 'includes/header.html'%}
-    <main>
-      {%block content%} 
-      <!-- класс py-5 создает отступы сверху и снизу блока -->
-      <div class="container py-5">     
-        <h1>{{title}}</h1>
-        <article>
-          {% for post in posts %}
+<main>
+  {%block content%} 
+    <div class="container py-5">     
+    <h1>{{title}}</h1>
+    <article>
+      {% for post in posts %}
           <ul>
-            <li>
-              Автор: {{ post.author.get_full_name }}
-            </li>
-            <li>
+             <li> Автор: {{ post.author.get_full_name }} </li>
+             <li>
               Дата публикации: {{ post.pub_date|date:"d E Y" }}
-            </li>
+             </li>
           </ul>
-          <p>{{ post.text }}</p>    
-          <a href="{%url 'posts:group_list'%}">все записи группы</a>
+          <p>{{ post.text }}</p>
+          {% if post.group %}   
+             <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
+          {% endif %}
+    </article>
           {% if not forloop.last %}<hr>{% endif %}
-        {% endfor %}
-      {%endblock%}  
-    </main>
-    <!-- Использованы классы бустрапа: -->
-    <!-- border-top: создаёт тонкую линию сверху блока -->
-    <!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
-    <!-- py-3: контент внутри размещается с отступом сверху и снизу -->         
-    <footer class="border-top text-center py-3">
-      {% include 'includes/footer.html' %}    
-    </footer>
-  </body> 
+      {% endfor %} 
+  {%endblock%}
+    </div>  
+</main>        
+      {% include 'includes/footer.html' %}
+      

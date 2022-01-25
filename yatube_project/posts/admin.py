@@ -16,6 +16,16 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
+class GroupAdmin(admin.ModelAdmin):
+    list_display = (
+        'pk',
+        'title',
+        'slug'
+    )
+    search_fields = ('title', 'slug')
+    empty_value_display = '-пусто-'
+
+
 admin.site.register(Post, PostAdmin)
-admin.site.register(Group)
+admin.site.register(Group, GroupAdmin)
 # Register your models here.
